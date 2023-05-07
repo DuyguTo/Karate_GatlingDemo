@@ -1,9 +1,9 @@
 Feature: Performance Feature
-
   Background:
-    * def tokenResponse = callonce read('classpath:callers/conduit/token.feature@login') {"email":#(userEmail),"password":#(userPassword)}
-    * def authToken = tokenResponse.token
-    Given header Authorization = 'Token ' + authToken
+    #* def tokenResponse = callonce read('classpath:callers/conduit/token.feature@login') {"email":#(userEmail),"password":#(userPassword)}
+    #* def authToken = tokenResponse.token
+    #Given header Authorization = 'Token ' + authToken
+    Given header Authorization = 'Token ' + __gatling.token
     Given url baseUrl
     And path 'articles'
     * def requestJson = read('classpath:datas/conduit/createArticleRequest.json')
@@ -15,16 +15,21 @@ Feature: Performance Feature
   Scenario: Create Article
     * def title = dataGenerator.getRandomTitle()
     * set requestJson.article.title = title
-    * set requestJson.article.description = dataGenerator.getRandomDescription()
-    * set requestJson.article.body = 'test title bal bla'
+    * set requestJson.article.description = __gatling.DESCRIPTION
+    * set requestJson.article.body = __gatling.BODY
     * set requestJson.article.tagList = null
+    And header karate-name = 'Create And Delete Article'
     And request requestJson
     When method POST
     And status 200
     * def articleId = response.article.slug
+    * print karate.prevRequest
+    * print '*'
+    * print response
 
-    Given header Authorization = 'Token ' + authToken
+    * karate.pause(5000)
+
+    Given header Authorization = 'Token ' + __gatling.token
     When path 'articles', articleId
     And method DELETE
     And status 204
-
