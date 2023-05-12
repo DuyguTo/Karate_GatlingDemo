@@ -31,9 +31,9 @@ class CDArticleSimulation extends Simulation {
 
   // mvn clean test-compile gatling:test -Dgatling.simulationClass=performanceRunners.CDArticleSimulation
 
-  // setUp(
-  //   createArticle.inject(rampUsers(usersCount.toInt) during Duration(duration.toInt, SECONDS)).protocols(protocol)
-  // );
+   /*setUp(
+     createArticle.inject(rampUsers(usersCount.toInt) during Duration(duration.toInt, SECONDS)).protocols(protocol)
+   );*/
   setUp(//SIMULASYONU ASIL YAPAN YER BU KISIM
     createArticle.inject(
       atOnceUsers(1), // 1 user ile simulasyon basladi
