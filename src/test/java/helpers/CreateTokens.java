@@ -11,7 +11,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class CreateTokens {
 
     private static final ArrayList<String> tokens = new ArrayList<>();
-    private static final AtomicInteger counter = new AtomicInteger();
+    private static final AtomicInteger counter = new AtomicInteger();//YUKARIDAKI LISTEYI ITERATE ETMEK ICIN KULLANILIR
 
     private static String[] emails = {
             "kardemo1@test.com",

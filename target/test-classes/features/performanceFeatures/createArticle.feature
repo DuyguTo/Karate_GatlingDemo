@@ -24,7 +24,7 @@ Feature: Performance Feature
     And status 200
     * def articleId = response.article.slug
     * print karate.prevRequest
-    * print '*'
+    * print '*********'
     * print response
 
     * karate.pause(5000)
